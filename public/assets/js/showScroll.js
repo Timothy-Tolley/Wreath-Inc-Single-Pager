@@ -1,29 +1,30 @@
 $(document).ready(() => {
-  var bottomDiv = $("#further-text");
-  var topDiv = $("#top-text")
-  var downArrow =$("#downArrow")
-  setTimeout(() => {
-    bottomDiv.toggleClass("after-scroll")
-    topDiv.toggleClass("after-scroll-top")
-    downArrow.toggleClass("active")
-  }, 4000)
+  var bottomDiv = $('#further-text')
+  var topDiv = $('#top-text')
+  var scroll = 0
+  var first = 0
+
+  $('body').on('mousewheel', () => {
+    scroll++
+    if (first === 0 && scroll > 20) {
+      bottomDiv.toggleClass('after-scroll')
+      topDiv.toggleClass('after-scroll-top')
+      scroll = 0
+      first = 1
+    } else {
+      if (scroll > 50) {
+        bottomDiv.toggleClass('after-scroll')
+        topDiv.toggleClass('after-scroll-top')
+        scroll = 0
+      }
+    }
+  })
 })
 
-// mousewheel
-// $('body').on('mousewheel', () => {
-//   scroll++
-//   if (scroll > 20) {
-//     setInterval(() => {
-//       timer++
-//     }, 1000)
-//     if(timer > 10) {
-//     bottomDiv.toggleClass("after-scroll")
-//     topDiv.toggleClass("after-scroll-top")
-//     scroll = 0
-//     timer = 0
-//     }
-//     else {
-//       scroll = 0
-//     }
-//   }
+// Timeout
+
+//   setTimeout(() => {
+//     bottomDiv.toggleClass('after-scroll')
+//     topDiv.toggleClass('after-scroll-top')
+//   }, 4000)
 // })
